@@ -151,20 +151,11 @@ export PATH=$WORK_DIR/depot_tools:$PATH
 # Each public symbol is also marked in source files as such. We need to redefine some symbols visibility
 # to make WebRTC builable, usable and properly configurable for iOS platform.
 function patchWebRTC() {
+	echo 'Patching WebRTC for livekit compatibilty'
+	patch -b -p0 -d $WEBRTC_DIR < $PATCHES_DIR/webrtc-sdk.patch
+
 	echo 'Patching WebRTC for iOS platform support'
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/builtin_audio_decoder_factory.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/builtin_audio_encoder_factory.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/sdp_video_format_utils.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/sdk_BUILD.patch
 	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/abseil_optional.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/RTCPeerConnectionFactoryBuilder.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/audio_device_module_h.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/audio_device_module_mm.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/objc_video_decoder_factory_h.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/objc_video_encoder_factory_h.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/objc_video_encoder_factory_mm.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/video_decoder_factory_h.patch
-	patch -b -p0 -d $WORK_DIR < $PATCHES_DIR/video_encoder_factory_h.patch
 }
 
 # WebRTC sources are downloaded by git client from Depot tools.
