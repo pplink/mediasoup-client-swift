@@ -188,8 +188,8 @@ function refetchWebRTC() {
 }]
 target_os = ["ios"]'
 
-	# Fetch WebRTC m120 version.
-	gclient sync --no-history --revision src@branch-heads/6099
+	# Fetch WebRTC m114 version.
+	gclient sync --no-history --revision src@branch-heads/5735
 
 	# Fetch all possible WebRTC versions so you can switch between them.
 	# Takes longer time and more disk space.
